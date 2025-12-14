@@ -47,7 +47,11 @@ frontend/build/
 
 # Database
 *.db
+*.db-wal
+*.db-shm
 *.sqlite
+*.sqlite-wal
+*.sqlite-shm
 *.sqlite3
 checkpoints.db
 
