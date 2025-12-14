@@ -12,6 +12,8 @@ AI-Powered CBT Protocol Generator featuring multi-agent collaboration, quality a
 - **Markdown Formatting**: Beautiful, readable protocol output
 - **Auto-Save**: Approved protocols saved to `CBT_Downloaded/` folder
 - **Resume Capability**: Continue interrupted workflows from checkpoints
+- **MCP Server**: Accessible via Claude Desktop or any MCP client
+- **Multiple Interfaces**: Web UI, Terminal client, or MCP integration
 
 ## 🚀 Quick Start
 
@@ -50,6 +52,8 @@ AI-Powered CBT Protocol Generator featuring multi-agent collaboration, quality a
 
 ### Running the Application
 
+**Option 1: Web Interface**
+
 1. **Start Backend**
    ```bash
    cd CERINA_FOUNDRY
@@ -64,6 +68,46 @@ AI-Powered CBT Protocol Generator featuring multi-agent collaboration, quality a
 
 3. **Open Browser**
    Navigate to `http://localhost:5174`
+
+**Option 2: MCP Client (Claude Desktop)**
+
+CERINA can be used as an MCP server with Claude Desktop as the client:
+
+1. **Add to Claude Desktop Config**
+   
+   Open `%APPDATA%\Claude\claude_desktop_config.json` and add:
+   
+   ```json
+   {
+     "mcpServers": {
+       "cerina-foundry": {
+         "command": "C:/Cerina_Foundry_ver0/backend/venv/Scripts/python.exe",
+         "args": [
+           "C:/Cerina_Foundry_ver0/backend/mcp_server.py",
+           "--transport",
+           "stdio"
+         ],
+         "env": {
+           "PYTHONPATH": "C:/Cerina_Foundry_ver0",
+           "PYTHONUNBUFFERED": "1"
+         }
+       }
+     }
+   }
+   ```
+
+2. **Restart Claude Desktop**
+
+3. **Use the tool**
+   Ask Claude: *"Create a CBT protocol for sleep anxiety"*
+   
+   Claude will call the `create_protocol` MCP tool and return the generated protocol.
+
+**Option 3: Terminal Client**
+
+```bash
+python run_client.py "CBT for test anxiety"
+```
 
 ## 📖 Usage
 
